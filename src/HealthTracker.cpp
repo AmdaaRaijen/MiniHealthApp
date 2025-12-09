@@ -63,7 +63,7 @@ void inputData(HealthData &data) {
     cin >> data.sleepHours[index];
 
     cout << "Data for day " << day << " recorded successfully." << endl;
-    cout << "Press Enter to continue..." << endl;
+    cout << "\nPress Enter to continue..." << endl;
     cin.ignore(); cin.get();
 }
 
@@ -73,7 +73,7 @@ void viewWeeklyStats(const HealthData &data) {
     cout << "2. View Weekly Stats" << endl;
     cout << "=== WEEKLY HEALTH STATS ===" << endl;
 
-    cout << "Day | " << setw(11) << "Water (cups)" << " | " << setw(5) << "Steps" << " | " << setw(5) << "Sleep (hours)" << endl;
+    cout << "Day | " << setw(12) << "Water (cups)" << " | " << setw(6) << "Steps" << " | " << setw(5) << "Sleep (hours)" << endl;
     cout << string(45, '-') << endl;
 
     float totalWater = 0, totalSteps = 0, totalSleep = 0;
@@ -81,8 +81,8 @@ void viewWeeklyStats(const HealthData &data) {
 
     for (int i = 0; i < 7; i++) {
         cout << setw(3) << (i + 1) << " | " 
-             << setw(11) << data.waterIntake[i] << " | " 
-             << setw(5) << data.steps[i] << " | " 
+             << setw(12) << data.waterIntake[i] << " | " 
+             << setw(6) << data.steps[i] << " | " 
              << setw(5) << data.sleepHours[i] << endl;
 
         if (data.waterIntake[i] > 0 || data.steps[i] > 0 || data.sleepHours[i] > 0) {
@@ -104,7 +104,7 @@ void viewWeeklyStats(const HealthData &data) {
         cout << "No data available to calculate averages." << endl;
     }
 
-    cout << "Press Enter to continue..." << endl;
+    cout << "\nPress Enter to continue..." << endl;
     cin.ignore(); cin.get();
 }
 
@@ -166,7 +166,7 @@ void checkRecomendation(const HealthData &data) {
     else 
         cout << "You are oversleeping! Try to maintain a regular sleep schedule." << endl;
 
-    cout << "Press Enter to continue..." << endl;
+    cout << "\nPress Enter to continue..." << endl;
     cin.ignore(); cin.get();
 }
 
@@ -191,6 +191,6 @@ void resetData(HealthData &data) {
         cout << "Data reset cancelled." << endl;
     }
 
-    cout << "Press Enter to continue..." << endl;
+    cout << "\nPress Enter to continue..." << endl;
     cin.ignore(); cin.get();
 }
