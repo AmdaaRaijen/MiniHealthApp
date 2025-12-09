@@ -53,13 +53,13 @@ void viewWeeklyStats(const HealthData &data) {
     cout << "2. View Weekly Stats" << endl;
     cout << "=== WEEKLY HEALTH STATS ===" << endl;
 
-    cout << "Day | " << setw(5) << "Water (cups)" << " | " << setw(9) << "Steps" << " | " << setw(5) << "Sleep (hours)" << endl;
+    cout << "Day | " << setw(11) << "Water (cups)" << " | " << setw(5) << "Steps" << " | " << setw(5) << "Sleep (hours)" << endl;
     cout << string(45, '-') << endl;
 
     for (int i = 0; i < 7; i++) {
-        cout << setw(4) << (i + 1) << " | " 
-             << setw(5) << data.waterIntake[i] << " | " 
-             << setw(9) << data.steps[i] << " | " 
+        cout << setw(3) << (i + 1) << " | " 
+             << setw(11) << data.waterIntake[i] << " | " 
+             << setw(5) << data.steps[i] << " | " 
              << setw(5) << data.sleepHours[i] << endl;
     }
 
