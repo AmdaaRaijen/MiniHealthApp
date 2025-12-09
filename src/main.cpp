@@ -34,7 +34,7 @@ int main() {
       checkRecomendation(weeklyData);
       break;
     case 4:
-      // TODO: Reset data
+      resetData(weeklyData);
       break;
     case 5:
       cout << "Exiting the program." << endl;

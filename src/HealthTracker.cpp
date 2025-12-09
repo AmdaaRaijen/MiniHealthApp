@@ -18,6 +18,7 @@ void showMenu();
 void inputData(HealthData &data);
 void viewWeeklyStats(const HealthData &data);
 void checkRecomendation(const HealthData &data);
+void resetData(HealthData &data);
 
 void showMenu() {
     cout << "==== MINI HEALTH TRACKER ====" << endl;
@@ -150,6 +151,31 @@ void checkRecomendation(const HealthData &data) {
     else 
         cout << "You are oversleeping! Try to maintain a regular sleep schedule." << endl;
 
+    cout << "Press Enter to continue..." << endl;
+    cin.ignore(); cin.get();
+}
+
+void resetData(HealthData &data) {
+    char confirm;
+
+    cout << "4. Reset Data" << endl;
+    cout << "Are your sure you want do delete the data? (y/n): ";
+    cin >> confirm;
+
+    if(confirm == 'y' || confirm == 'Y') 
+    {
+        for (int i = 0; i < 7; i++) {
+            data.waterIntake[i] = 0;
+            data.steps[i] = 0;
+            data.sleepHours[i] = 0;
+        }
+        cout << "Data reset successfully." << endl;
+    } 
+    else 
+    {
+        cout << "Data reset cancelled." << endl;
+    }
+    
     cout << "Press Enter to continue..." << endl;
     cin.ignore(); cin.get();
 }
