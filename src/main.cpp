@@ -31,7 +31,7 @@ int main() {
       viewWeeklyStats(weeklyData);
       break;
     case 3:
-      // TODO: Check health recomendations
+      checkRecomendation(weeklyData);
       break;
     case 4:
       // TODO: Reset data

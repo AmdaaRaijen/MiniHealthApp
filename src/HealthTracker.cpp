@@ -9,9 +9,15 @@ struct HealthData {
     int waterIntake[7];
 } weeklyData;
 
+const int WATER_INTAKE_TARGET = 8;
+const int STEP_TARGET = 5000;
+const int MIN_SLEEP_TARGET = 7;
+const int MAX_SLEEP_TARGET = 9;
+
 void showMenu();
 void inputData(HealthData &data);
 void viewWeeklyStats(const HealthData &data);
+void checkRecomendation(const HealthData &data);
 
 void showMenu() {
     cout << "==== MINI HEALTH TRACKER ====" << endl;
@@ -83,6 +89,66 @@ void viewWeeklyStats(const HealthData &data) {
     } else {
         cout << "No data available to calculate averages." << endl;
     }
+
+    cout << "Press Enter to continue..." << endl;
+    cin.ignore(); cin.get();
+}
+
+void checkRecomendation(const HealthData &data) {
+    float totalWater = 0, totalStep = 0, totalSleep = 0;
+    int daysWIthData = 0;
+
+    for (int i = 0; i < 7; i++) {
+        if (data.waterIntake[i] > 0 || data.steps[i] > 0 || data.sleepHours[i] > 0) {
+            totalWater += data.waterIntake[i];
+            totalStep += data.steps[i];
+            totalSleep += data.sleepHours[i];
+            daysWIthData++;
+        }
+    }
+
+    if (daysWIthData == 0 ) {
+        cout << "NO data available to check health recomendation, please input data first!\n";
+        cin.ignore(); cin.get();
+        return;
+    }
+
+    float averageWaterIntake = totalWater/daysWIthData;
+    float averageStep = totalStep/daysWIthData;
+    float averageSleepHours = totalSleep/daysWIthData;
+
+    cout << "3. Check Health Recomendation" << endl;
+    cout << "=== RECOMENDATION (Based on average) ===" << endl;
+
+    // 1. Water intake recomendation
+    cout << "\n1. Water Intake" << endl;
+    cout << "Target : " << WATER_INTAKE_TARGET << " cups/day" << endl;
+    cout << "Yours  : " << averageWaterIntake << " cups/day" << endl;
+    cout << "Status : ";
+    if (averageWaterIntake >= WATER_INTAKE_TARGET) cout << " Great! You are hyrated" << endl;
+    else if (WATER_INTAKE_TARGET - averageWaterIntake == 1) cout << " 1 more cup of water" << endl;
+    else cout << WATER_INTAKE_TARGET - averageWaterIntake << " more cups of water." << endl;
+
+    // 2. Total step recomendation
+    cout << "\n2. Total step recomendation" << endl;
+    cout << "Target : " << STEP_TARGET << " steps/day" << endl;
+    cout << "Yours  : " << averageStep<< " steps/day" << endl;
+    cout << "Status : ";
+    if (averageStep >= STEP_TARGET) cout << "Great, target achieved! Keep it up!" << endl;
+    else if (averageStep >= (STEP_TARGET - 500)) cout << "Almost there! Let's walk a little further!" << endl;
+    else cout << "Not active enough! Let's walk more!" << endl;
+    
+    // 3. Sleep hours recomendation
+    cout << "\n3. Sleep Hours" << endl;
+    cout << "Target : " << MIN_SLEEP_TARGET << "-" << MAX_SLEEP_TARGET << " hours/day" << endl;
+    cout << "Yours  : " << averageSleepHours << " hours/day" << endl;
+    cout << "Status : ";
+    if (averageSleepHours >= MIN_SLEEP_TARGET && averageSleepHours <= MAX_SLEEP_TARGET) 
+        cout << "Good job! You have a healthy sleep pattern." << endl;
+    else if (averageSleepHours < MIN_SLEEP_TARGET) 
+        cout << "You need more sleep! Try to rest better." << endl;
+    else 
+        cout << "You are oversleeping! Try to maintain a regular sleep schedule." << endl;
 
     cout << "Press Enter to continue..." << endl;
     cin.ignore(); cin.get();
