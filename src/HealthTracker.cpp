@@ -56,14 +56,33 @@ void viewWeeklyStats(const HealthData &data) {
     cout << "Day | " << setw(11) << "Water (cups)" << " | " << setw(5) << "Steps" << " | " << setw(5) << "Sleep (hours)" << endl;
     cout << string(45, '-') << endl;
 
+    float totalWater = 0, totalSteps = 0, totalSleep = 0;
+    int daysWithData = 0;
+
     for (int i = 0; i < 7; i++) {
         cout << setw(3) << (i + 1) << " | " 
              << setw(11) << data.waterIntake[i] << " | " 
              << setw(5) << data.steps[i] << " | " 
              << setw(5) << data.sleepHours[i] << endl;
+
+        if (data.waterIntake[i] > 0 || data.steps[i] > 0 || data.sleepHours[i] > 0) {
+            totalWater += data.waterIntake[i];
+            totalSteps += data.steps[i];
+            totalSleep += data.sleepHours[i];
+            daysWithData++;
+        }
     }
 
     cout << string(45, '-') << endl;
+
+    cout << "Averages:" << endl;
+    if (daysWithData > 0) {
+        cout << "Water Intake: " << (totalWater / daysWithData) << " cups/day" << endl;
+        cout << "Steps: " << (totalSteps / daysWithData) << " steps/day" << endl;
+        cout << "Sleep: " << (totalSleep / daysWithData) << " hours/day" << endl;
+    } else {
+        cout << "No data available to calculate averages." << endl;
+    }
 
     cout << "Press Enter to continue..." << endl;
     cin.ignore(); cin.get();
