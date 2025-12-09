@@ -20,7 +20,17 @@ void viewWeeklyStats(const HealthData &data);
 void checkRecomendation(const HealthData &data);
 void resetData(HealthData &data);
 
+void clearSreen() {
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
+
 void showMenu() {
+    clearSreen();
+
     cout << "==== MINI HEALTH TRACKER ====" << endl;
     cout << "1. Input Data" << endl;
     cout << "2. View Weekly Stats" << endl;
@@ -31,6 +41,7 @@ void showMenu() {
 
 void inputData(HealthData &data) {
     int day;
+    clearSreen();
 
     cout << "1. Input Health Data" << endl;
     cout << "Enter day of the week (1-7): ";
@@ -57,6 +68,8 @@ void inputData(HealthData &data) {
 }
 
 void viewWeeklyStats(const HealthData &data) {
+    clearSreen();
+
     cout << "2. View Weekly Stats" << endl;
     cout << "=== WEEKLY HEALTH STATS ===" << endl;
 
@@ -96,6 +109,8 @@ void viewWeeklyStats(const HealthData &data) {
 }
 
 void checkRecomendation(const HealthData &data) {
+    clearSreen();
+
     float totalWater = 0, totalStep = 0, totalSleep = 0;
     int daysWIthData = 0;
 
@@ -175,7 +190,7 @@ void resetData(HealthData &data) {
     {
         cout << "Data reset cancelled." << endl;
     }
-    
+
     cout << "Press Enter to continue..." << endl;
     cin.ignore(); cin.get();
 }
