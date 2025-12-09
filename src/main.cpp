@@ -13,6 +13,14 @@ int main() {
     cout << "Selection: ";
     cin >> selection;
 
+    // FIX: There is an error if selection is not an integer
+    if (cin.fail()) {
+      cin.clear();
+      cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discard invalid input
+      cout << "Invalid input. Please enter a number between 1 and 5." << endl;
+      continue;
+    }
+
     switch (selection)
     {
     case 1:
