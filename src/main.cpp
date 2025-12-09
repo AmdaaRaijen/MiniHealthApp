@@ -1,4 +1,5 @@
 #include <iostream>
+# include <limits>
 #include "HealthTracker.cpp"
 
 using namespace std;
@@ -27,7 +28,7 @@ int main() {
       inputData(weeklyData);
       break;
     case 2:
-      // TODO: View weekly stats
+      viewWeeklyStats(weeklyData);
       break;
     case 3:
       // TODO: Check health recomendations
