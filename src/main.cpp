@@ -1,4 +1,5 @@
 #include <iostream>
+#include "HealthTracker.cpp"
 
 using namespace std;
 
@@ -7,7 +8,7 @@ int main() {
   int selection = 0;
   
   do {
-    cout << "==== MINI HEALTH TRACKER ====" << endl;
+    showMenu();
 
     cout << "Selection: " << endl;
     cin >> selection;
