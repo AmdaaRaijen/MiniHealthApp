@@ -10,13 +10,13 @@ int main() {
   do {
     showMenu();
 
-    cout << "Selection: " << endl;
+    cout << "Selection: ";
     cin >> selection;
 
     switch (selection)
     {
     case 1:
-      // TODO: Input Data
+      inputData(weeklyData);
       break;
     case 2:
       // TODO: View weekly stats
